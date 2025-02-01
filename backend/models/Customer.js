@@ -6,8 +6,8 @@ const customerSchema = mongoose.Schema({
   orders: [
     {
       type: { type: String, enum: ['Quadro', 'Trio', 'Pair', 'Stag', 'Pullet', 'Battlestag', 'Crosses Pullet'], required: true },
-      price: { type: Number, enum: [35000, 30000, 23000, 15000, 8000, 5000, 3500], required: true },
-      bloodline: { type: String, enum: ['Boston RH', 'Sweater', 'Kelso', 'Hatch'], required: true },
+      price: { type: Number, required: true },
+      bloodlines: [{ type: String, enum: ['Stag: Larry Romero Raptor Sweater', 'Stag: Larry Romero YLH', 'Stag: Larry Romero Hatch Grey', 'Stag: Carol Nesmith Gilmore Hatch', 'Stag: Luke Breesee Yellow Leg Kelso', 'Stag: Paul Morris Boston Roundhead', 'Stag: LDT Boston RH', 'Stag: Crowsville Sweaters', 'Stag: NJ Biason Sweaters', 'Stag: RDD dom/bulik', 'Pullet: Larry Romero Raptor Sweater', 'Pullet: Larry Romero YLH', 'Pullet: Larry Romero Hatch Grey', 'Pullet: Carol Nesmith Gilmore Hatch', 'Pullet: Luke Breesee Yellow Leg Kelso', 'Pullet: Paul Morris Boston Roundhead', 'Pullet: LDT Boston RH', 'Pullet: Crowsville Sweaters', 'Pullet: NJ Biason Sweaters', 'Pullet: Sweater'] }], // Allow multiple bloodlines
     },
   ],
   payments: [

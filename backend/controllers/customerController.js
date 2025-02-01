@@ -44,3 +44,36 @@ export const deleteCustomer = async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 };
+
+
+export const addPayment = async (req, res) => {
+  const { uniqueId } = req.params;
+  const { type, amount } = req.body;
+  try {
+    const customer = await Customer.findOne({ uniqueId });
+    if (!customer) return res.status(404).json({ message: 'Customer not found' });
+
+    customer.payments.push({ type, amount });
+    await customer.save();
+
+    res.status(200).json(customer);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
+
+
+export const deletePayment = async (req, res) => {
+  const { uniqueId, paymentId } = req.params;
+  try {
+    const customer = await Customer.findOne({ uniqueId });
+    if (!customer) return res.status(404).json({ message: 'Customer not found' });
+
+    customer.payments = customer.payments.filter((payment) => payment._id.toString() !== paymentId);
+    await customer.save();
+
+    res.status(200).json(customer);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+};
